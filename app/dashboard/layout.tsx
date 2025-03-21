@@ -24,8 +24,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "TEDxSIST ⋅ Dashboard",
+  title: "SISTMUN ⋅ Dashboard",
   description: "Admin Functionalities",
+  viewport: "width=device-width, initial-scale=1.0, maximum-scale=1.0",
 };
 
 export default function RootLayout({
@@ -37,29 +38,29 @@ export default function RootLayout({
     <ClientRootLayout>
       <main
         lang="en"
-        className={`min-h-screen w-full bg-background text-foreground flex ${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`min-h-screen w-full bg-background text-foreground flex ${geistSans.variable} ${geistMono.variable} antialiased overflow-x-hidden`}
       >
         <SidebarProvider>
           <AppSidebar />
-          <SidebarInset>
-            <header className="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12">
-              <div className="flex items-center justify-between w-full px-4">
-                <div className="flex items-center gap-2">
+          <SidebarInset className="w-full">
+            <header className="flex h-14 sm:h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear">
+              <div className="flex items-center justify-between w-full px-2 sm:px-4">
+                <div className="flex items-center gap-1 sm:gap-2">
                   <SidebarTrigger
                     variant="outline"
-                    className="scale-125 sm:scale-70 md:scale-70 lg:scale-100 text-foreground/60"
+                    className="h-8 w-8 sm:h-9 sm:w-9 text-foreground/60"
                   />
                   <Separator
                     orientation="vertical"
-                    className="h-7 bg-border"
+                    className="h-5 sm:h-7 bg-border"
                   />
                   <Breadcrumbs />
                 </div>
                 <ModeToggle />
               </div>
             </header>
-            <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
-              <div className="min-h-[100vh] flex-1 rounded-xl bg-muted/15 md:min-h-min gap-5 p-5 pt-3">
+           <div className="flex flex-1 flex-col gap-2 sm:gap-4 p-2 sm:p-4 pt-0">
+              <div className="min-h-[calc(100vh-3.5rem)] sm:min-h-[calc(100vh-4rem)] flex-1 rounded-lg sm:rounded-xl bg-muted/15 md:min-h-min gap-2 sm:gap-5 p-2 sm:p-5 pt-2 sm:pt-3">
                 {children}
               </div>
             </div>

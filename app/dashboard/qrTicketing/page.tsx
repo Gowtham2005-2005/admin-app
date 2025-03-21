@@ -542,10 +542,10 @@ const ParentComponent = () => {
   }, [activeTab, fetchAttendedParticipants, fetchOutsideParticipants, hasFetchedAttendees]);
 
   return (
-    <section className="text-foreground">
-      <div className="text-foreground px-2 sm:px-4">
-        <Card className="w-auto bg-card text-card-foreground">
-          <CardHeader className="px-3 sm:px-6">
+    <section className="text-foreground max-w-full">
+      <div className="text-foreground px-1 sm:px-2 md:px-4">
+        <Card className="w-auto bg-card text-card-foreground overflow-hidden">
+          <CardHeader className="px-2 py-3 sm:px-4 sm:py-4">
             <div className="flex flex-col sm:flex-row items-start justify-between gap-2">
               <div className="w-full sm:w-auto">
                 <CardTitle>Attendance Tracking</CardTitle>
