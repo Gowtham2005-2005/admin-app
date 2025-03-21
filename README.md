@@ -7,21 +7,6 @@ The **Sathyabama MUN 2025 Admin-App** is a web-based administrative platform des
 The app is fully deployed and accessible at:  
 🔗 [Sathyabama MUN 2025 Admin Panel](https://admin.sistmun.com)
 
-## Features
-
-- **Participant Management** – Approve, reject, and view participant details.
-- **Automated Email System** – Send bulk approval/rejection emails.
-- **QR Code Check-In** – Scan and validate participant tickets.
-- **Certificate Generation** – Secure and automated certificate distribution.
-- **Google Drive Integration** – Store generated certificates efficiently.
-
-## Security Considerations
-
-- **Firebase Authentication** ensures only authorized users can access the admin panel.
-- **Firestore Security Rules** restrict access based on user roles.
-- **Flask REST API Security** includes authentication, rate limiting, and validation.
-- **HTTPS Enforcement** ensures secure communication in production.
-
 ## Contributors
 
 [![GitHub Contributors](https://img.shields.io/github/contributors/MUN-SIST/admin-app?color=blue)](https://github.com/MUN-SIST/admin-app/graphs/contributors)
