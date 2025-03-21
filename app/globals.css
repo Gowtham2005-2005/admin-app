@@ -1,0 +1,138 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+@layer base {
+  :root {
+    --radius: 0.5rem;
+    
+    /* Light theme */
+    --background: 0 0% 100%;
+    --foreground: 0 0% 0%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 0%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 0%;
+    --primary: 202 85% 41%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 0%;
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 45%;
+    --accent: 0 0% 96%;
+    --accent-foreground: 0 0% 0%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 202 85% 41%;
+    --chart-1: 202 85% 41%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+    
+    /* Light theme sidebar */
+    --sidebar: 0 0% 100%;
+    --sidebar-foreground: 0 0% 0%;
+    --sidebar-muted: 0 0% 96%;
+    --sidebar-muted-foreground: 0 0% 45%;
+    --sidebar-accent: 0 0% 96%;
+    --sidebar-accent-foreground: 0 0% 0%;
+  }
+
+  .dark {
+    /* Dark theme */
+    --background: 0 0% 0%;
+    --foreground: 0 0% 100%;
+    --card: 0 0% 0%;
+    --card-foreground: 0 0% 100%;
+    --popover: 0 0% 0%;
+    --popover-foreground: 0 0% 100%;
+    --primary: 202 85% 45%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 10%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 65%;
+    --accent: 0 0% 10%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 202 85% 50%;
+    --chart-1: 202 85% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+    
+    /* Dark theme sidebar */
+    --sidebar: 0 0% 0%;
+    --sidebar-foreground: 0 0% 100%;
+    --sidebar-muted: 0 0% 15%;
+    --sidebar-muted-foreground: 0 0% 65%;
+    --sidebar-accent: 0 0% 10%;
+    --sidebar-accent-foreground: 0 0% 100%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+#video-container {
+  position: relative;
+    width: 100%;
+    /* Adjust to fit parent container */
+    max-width: 400px;
+    /* Limit the maximum size */
+    aspect-ratio: 1 / 1;
+    /* Ensures the container is always a square */
+    overflow: hidden;
+    border-radius: 15px;
+    /* Optional: Rounded corners */
+    display: flex;
+    justify-content: center;
+    /* Center the video horizontally */
+    align-items: center;
+    /* Center the video vertically */
+    background: #000;
+    /* Optional: Background for contrast */
+}
+
+#video-container video {
+  width: 100%;
+    /* Make the video fill the container */
+    height: 100%;
+    /* Maintain aspect ratio within the square */
+    object-fit: cover;
+    /* Ensures the video fills the container */
+  border-radius: 15px;
+  /* Match the container's border-radius */
+}
+
+#video-container.example-style-2 .scan-region-highlight {
+  border-radius: 30px;
+  outline: rgba(0, 0, 0, 0.25) solid 50vmax;
+}
+
+#video-container.example-style-2 .scan-region-highlight-svg {
+  display: none;
+}
+
+#video-container.example-style-2 .code-outline-highlight {
+  stroke: rgba(255, 255, 255, 0.5) !important;
+  stroke-width: 15 !important;
+  stroke-dasharray: none !important;
+}
