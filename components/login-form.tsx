@@ -28,15 +28,14 @@ export function LoginForm({
       const response = await signInWithPopup(auth, googleProvider);
       const user = response.user;
       const token = await user.getIdToken(); // Fetch the ID token
-      // Optionally verify email domain(example@tedxsist.com)
       const email = user.email || "";
       if (!email.endsWith("@gmail.com")) {
-        setError("Please use your TEDxSIST email to sign in.");
+        setError("Please use your SISTMUN email to sign in.");
         return;
       }
 
       if (!ALLOWED_ADMIN_EMAILS.includes(email)) {
-        setError("Access denied. Please use an authorized admin email address.");
+        setError("Access denied. Please use an authorized admin email address. (If this is a mistake contact tech team.)");
         return;
       }
 
