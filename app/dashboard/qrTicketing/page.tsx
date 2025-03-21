@@ -1,5 +1,5 @@
 'use client';
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback, useEffect, useRef } from 'react';
 import { Button } from "@/components/ui/button";
 import { Check, RefreshCw, LogIn, LogOut, Users, Loader2, QrCode, UserX, ChevronLeft, ChevronRight } from "lucide-react";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
@@ -333,13 +333,12 @@ const ParentComponent = () => {
       setLoadingAttendees(false);
     }
   }, [loadingAttendees]);
-  
+  const loadingRef = useRef(false);
   // Fetch participants who are outside
   const fetchOutsideParticipants = useCallback(async () => {
-  if (loadingOutside) return;
-  
+  if (loadingRef.current) return;
+  loadingRef.current = true;
   setLoadingOutside(true);
-  
   try {
     console.log("Fetching outside participants...");
     const response = await fetch('/api/getOutsideParticipants', {
@@ -385,9 +384,10 @@ const ParentComponent = () => {
       toast.error(error instanceof Error ? error.message : 'Network error. Please check your connection and try again.');
     }
   } finally {
+    loadingRef.current = false;
     setLoadingOutside(false);
   }
-}, []); // Empty dependency array
+}, []); 
   
   // Process scan result
   const handleScan = useCallback(async (result: string) => {
