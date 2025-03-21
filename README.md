@@ -24,7 +24,7 @@ The app is fully deployed and accessible at:
 
 ## Contributors
 
-[![GitHub Contributors](https://img.shields.io/github/contributors//?color=blue)](https://github.com///graphs/contributors)
+[![GitHub Contributors](https://img.shields.io/github/contributors/MUN-SIST/admin-app?color=blue)](https://github.com/MUN-SIST/admin-app/graphs/contributors)
 
 <table>
   <tr>
@@ -38,7 +38,7 @@ The app is fully deployed and accessible at:
   </tr>
 </table>
 
-[Click here to view all contributors](https://github.com/Gowtham2005-2005/admin-app-tedxsist/graphs/contributors).
+[Click here to view all contributors](https://github.com/MUN-SIST/admin-app/graphs/contributors).
 
 ## Contribute
 
