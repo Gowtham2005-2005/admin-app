@@ -53,7 +53,7 @@ export async function GET() {
     console.log("[getAttendedParticipants] Fetching participants who are inside");
     
     const snapshot = await participantsRef
-      
+      .where('attend', '==', true)
       .get();
 
     if (snapshot.empty) {

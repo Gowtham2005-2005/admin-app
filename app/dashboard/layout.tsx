@@ -12,6 +12,7 @@ import {
   SidebarTrigger,
 } from "@/components/ui/sidebar";
 import { ModeToggle } from "@/components/mode-toggle";
+import ExcelDownloadButton from "@/components/ExcelButton"
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -56,7 +57,10 @@ export default function RootLayout({
                   />
                   <Breadcrumbs />
                 </div>
-                <ModeToggle />
+                <div className="flex items-center gap-2">
+                  <ModeToggle />
+                  <ExcelDownloadButton />
+                </div>
               </div>
             </header>
            <div className="flex flex-1 flex-col gap-2 sm:gap-4 p-2 sm:p-4 pt-0">

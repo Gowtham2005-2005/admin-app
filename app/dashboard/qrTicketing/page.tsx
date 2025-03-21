@@ -336,59 +336,58 @@ const ParentComponent = () => {
   
   // Fetch participants who are outside
   const fetchOutsideParticipants = useCallback(async () => {
-    if (loadingOutside) return;
+  if (loadingOutside) return;
+  
+  setLoadingOutside(true);
+  
+  try {
+    console.log("Fetching outside participants...");
+    const response = await fetch('/api/getOutsideParticipants', {
+      headers: {
+        'Accept': 'application/json'
+      }
+    });
     
-    setLoadingOutside(true);
-    
-    try {
-      console.log("Fetching outside participants...");
-      const response = await fetch('/api/getOutsideParticipants', {
-        headers: {
-          'Accept': 'application/json'
-        }
-      });
-      
-      // First check if response is OK
-      if (!response.ok) {
-        const errorText = await response.text();
-        console.error(`Server error ${response.status}: ${errorText}`);
-        throw new Error(`Server responded with status: ${response.status}. ${errorText}`);
-      }
-      
-      const contentType = response.headers.get('content-type');
-      if (!contentType || !contentType.includes('application/json')) {
-        console.error(`Invalid content type: ${contentType}`);
-        throw new Error('Invalid response format from server');
-      }
-      
-      const data = await response.json();
-      console.log("Outside participants data:", data);
-      
-      if (data.error) {
-        throw new Error(data.message || data.error);
-      }
-      
-      setOutsideParticipants(data.participants || []);
-      
-      if (data.participants && data.participants.length > 0) {
-        toast.success(`Found ${data.participants.length} participants currently outside`);
-      } else {
-        toast.info('Everyone is inside the hall', {
-          description: 'No one is currently outside'
-        });
-      }
-    } catch (error) {
-      console.error('Error fetching outside participants:', error);
-      
-      if (error instanceof SyntaxError) {
-        toast.error('Invalid server response. Please check server logs.');
-      } else {
-        toast.error(error instanceof Error ? error.message : 'Network error. Please check your connection and try again.');
-      }
-    } finally {
-      setLoadingOutside(false);
+    if (!response.ok) {
+      const errorText = await response.text();
+      console.error(`Server error ${response.status}: ${errorText}`);
+      throw new Error(`Server responded with status: ${response.status}. ${errorText}`);
     }
-  }, [loadingOutside]);
+    
+    const contentType = response.headers.get('content-type');
+    if (!contentType || !contentType.includes('application/json')) {
+      console.error(`Invalid content type: ${contentType}`);
+      throw new Error('Invalid response format from server');
+    }
+    
+    const data = await response.json();
+    console.log("Outside participants data:", data);
+    
+    if (data.error) {
+      throw new Error(data.message || data.error);
+    }
+    
+    setOutsideParticipants(data.participants || []);
+    
+    if (data.participants && data.participants.length > 0) {
+      toast.success(`Found ${data.participants.length} participants currently outside`);
+    } else {
+      toast.info('Everyone is inside the hall', {
+        description: 'No one is currently outside'
+      });
+    }
+  } catch (error) {
+    console.error('Error fetching outside participants:', error);
+    
+    if (error instanceof SyntaxError) {
+      toast.error('Invalid server response. Please check server logs.');
+    } else {
+      toast.error(error instanceof Error ? error.message : 'Network error. Please check your connection and try again.');
+    }
+  } finally {
+    setLoadingOutside(false);
+  }
+}, []); // Empty dependency array
   
   // Process scan result
   const handleScan = useCallback(async (result: string) => {
@@ -609,10 +608,6 @@ const ParentComponent = () => {
                         <span className="text-muted-foreground">{data?.name || 'N/A'}</span>
                       </div>
                       <div className="flex">
-                        <span className="w-28 font-medium text-foreground">Register no.:</span> 
-                        <span className="text-muted-foreground">{data?.regno || 'N/A'}</span>
-                      </div>
-                      <div className="flex">
                         <span className="w-28 font-medium text-foreground">Email:</span> 
                         <span className="text-muted-foreground">{data?.email || 'N/A'}</span>
                       </div>
@@ -706,8 +701,7 @@ const ParentComponent = () => {
                         <TableHeader>
                           <TableRow>
                             <TableHead>Name</TableHead>
-                            <TableHead>Reg No.</TableHead>
-                            <TableHead>Email</TableHead>
+                            <TableHead>Contact no.</TableHead>
                             <TableHead>Entry Time</TableHead>
                             <TableHead>Exit Time</TableHead>
                             <TableHead>Status</TableHead>
@@ -718,7 +712,6 @@ const ParentComponent = () => {
                           {attendedParticipants.map((participant) => (
                             <TableRow key={participant.id}>
                               <TableCell className="font-medium">{participant.name}</TableCell>
-                              <TableCell>{participant.regno}</TableCell>
                               <TableCell>{participant.email}</TableCell>
                               <TableCell>
                                 {participant.inTimestamp || 'Not recorded'}
